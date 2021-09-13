@@ -86,7 +86,7 @@ function v1(options, buf, offset) {
   var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
 
   // Time since last uuid creation (in msecs)
-  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs) / 10000;
+  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
 
   // Per 4.2.1.2, Bump clockseq on clock regression
   if (dt < 0 && options.clockseq === undefined) {
@@ -146,7 +146,7 @@ var v1_1 = v1;
 function v4(options, buf, offset) {
   var i = buf && offset || 0;
 
-  if (typeof (options) == 'string') {
+  if (typeof(options) == 'string') {
     buf = options === 'binary' ? new Array(16) : null;
     options = null;
   }
@@ -198,6 +198,14 @@ var script = /*#__PURE__*/{
   },
 
   props: {
+    mediaRecorderOptions: {
+      type: Object,
+      default: {
+        mimeType: "video/mp4",
+        videoBitsPerSecond: 1500000,
+        audioBitsPerSecond: 64000
+      }
+    },
     videoSource: {
       type: Object,
       default: null
@@ -536,7 +544,7 @@ var script = /*#__PURE__*/{
     async dataURItoBlob(dataURI) {
       // convert base64/URLEncoded data component to raw binary data held in a string
       var byteString;
-      if (dataURI.split(",")[0].indexOf("base64") >= 0) byteString = atob(dataURI.split(",")[1]); else byteString = unescape(dataURI.split(",")[1]); // separate out the mime component
+      if (dataURI.split(",")[0].indexOf("base64") >= 0) byteString = atob(dataURI.split(",")[1]);else byteString = unescape(dataURI.split(",")[1]); // separate out the mime component
 
       var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0]; // write the bytes of the string to a typed array
 
@@ -630,78 +638,78 @@ var script = /*#__PURE__*/{
 };
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
-  if (typeof shadowMode !== 'boolean') {
-    createInjectorSSR = createInjector;
-    createInjector = shadowMode;
-    shadowMode = false;
-  }
-  // Vue.extend constructor export interop.
-  const options = typeof script === 'function' ? script.options : script;
-  // render functions
-  if (template && template.render) {
-    options.render = template.render;
-    options.staticRenderFns = template.staticRenderFns;
-    options._compiled = true;
-    // functional template
-    if (isFunctionalTemplate) {
-      options.functional = true;
+    if (typeof shadowMode !== 'boolean') {
+        createInjectorSSR = createInjector;
+        createInjector = shadowMode;
+        shadowMode = false;
     }
-  }
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId;
-  }
-  let hook;
-  if (moduleIdentifier) {
-    // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__;
-      }
-      // inject component styles
-      if (style) {
-        style.call(this, createInjectorSSR(context));
-      }
-      // register component module identifier for async chunk inference
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier);
-      }
-    };
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook;
-  }
-  else if (style) {
-    hook = shadowMode
-      ? function (context) {
-        style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
-      }
-      : function (context) {
-        style.call(this, createInjector(context));
-      };
-  }
-  if (hook) {
-    if (options.functional) {
-      // register for functional component in vue file
-      const originalRender = options.render;
-      options.render = function renderWithStyleInjection(h, context) {
-        hook.call(context);
-        return originalRender(h, context);
-      };
+    // Vue.extend constructor export interop.
+    const options = typeof script === 'function' ? script.options : script;
+    // render functions
+    if (template && template.render) {
+        options.render = template.render;
+        options.staticRenderFns = template.staticRenderFns;
+        options._compiled = true;
+        // functional template
+        if (isFunctionalTemplate) {
+            options.functional = true;
+        }
     }
-    else {
-      // inject component registration as beforeCreate hook
-      const existing = options.beforeCreate;
-      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+    // scopedId
+    if (scopeId) {
+        options._scopeId = scopeId;
     }
-  }
-  return script;
+    let hook;
+    if (moduleIdentifier) {
+        // server build
+        hook = function (context) {
+            // 2.3 injection
+            context =
+                context || // cached call
+                    (this.$vnode && this.$vnode.ssrContext) || // stateful
+                    (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+            // 2.2 with runInNewContext: true
+            if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+                context = __VUE_SSR_CONTEXT__;
+            }
+            // inject component styles
+            if (style) {
+                style.call(this, createInjectorSSR(context));
+            }
+            // register component module identifier for async chunk inference
+            if (context && context._registeredComponents) {
+                context._registeredComponents.add(moduleIdentifier);
+            }
+        };
+        // used by ssr in case component is cached and beforeCreate
+        // never gets called
+        options._ssrRegister = hook;
+    }
+    else if (style) {
+        hook = shadowMode
+            ? function (context) {
+                style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
+            }
+            : function (context) {
+                style.call(this, createInjector(context));
+            };
+    }
+    if (hook) {
+        if (options.functional) {
+            // register for functional component in vue file
+            const originalRender = options.render;
+            options.render = function renderWithStyleInjection(h, context) {
+                hook.call(context);
+                return originalRender(h, context);
+            };
+        }
+        else {
+            // inject component registration as beforeCreate hook
+            const existing = options.beforeCreate;
+            options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
+        }
+    }
+    return script;
 }
 
 /* script */
