@@ -46,11 +46,11 @@ export default /*#__PURE__*/ {
   props: {
     mediaRecorderOptions: {
       type: Object,
-      default: {
+      default: () => ({
         mimeType: "video/mp4",
         videoBitsPerSecond: 1500000,
         audioBitsPerSecond: 64000,
-      },
+      })
     },
     videoSource: {
       type: Object,
@@ -322,7 +322,7 @@ export default /*#__PURE__*/ {
     },
     startVideoRecording() {
       const stream = this.$refs.video.srcObject;
-      const recorder = new MediaRecorder(stream);
+      const recorder = new MediaRecorder(stream, this.mediaRecorderOptions);
       this.recorder = recorder;
 
       this.recorder.ondataavailable = (event) => this.pushVideoData(event.data);

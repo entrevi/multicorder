@@ -294,10 +294,12 @@ var uuid_1 = uuid;var script = {
   props: {
     mediaRecorderOptions: {
       type: Object,
-      default: {
-        mimeType: "video/mp4",
-        videoBitsPerSecond: 1500000,
-        audioBitsPerSecond: 64000
+      default: function _default() {
+        return {
+          mimeType: "video/mp4",
+          videoBitsPerSecond: 1500000,
+          audioBitsPerSecond: 64000
+        };
       }
     },
     videoSource: {
@@ -578,7 +580,7 @@ var uuid_1 = uuid;var script = {
       var _this7 = this;
 
       var stream = this.$refs.video.srcObject;
-      var recorder = new MediaRecorder(stream);
+      var recorder = new MediaRecorder(stream, this.mediaRecorderOptions);
       this.recorder = recorder;
 
       this.recorder.ondataavailable = function (event) {
@@ -952,7 +954,7 @@ var __vue_inject_styles__ = undefined;
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-648876c0";
+var __vue_module_identifier__ = "data-v-4864c6a2";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
