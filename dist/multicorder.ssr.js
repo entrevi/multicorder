@@ -1,4 +1,4 @@
-'use strict';var crypto=require('crypto');function _interopDefaultLegacy(e){return e&&typeof e==='object'&&'default'in e?e:{'default':e}}var crypto__default=/*#__PURE__*/_interopDefaultLegacy(crypto);function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+'use strict'; var crypto = require('crypto'); function _interopDefaultLegacy(e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e } } var crypto__default =/*#__PURE__*/_interopDefaultLegacy(crypto); function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
     var info = gen[key](arg);
     var value = info.value;
@@ -17,7 +17,7 @@
 function _asyncToGenerator(fn) {
   return function () {
     var self = this,
-        args = arguments;
+      args = arguments;
     return new Promise(function (resolve, reject) {
       var gen = fn.apply(self, args);
 
@@ -189,7 +189,7 @@ function v1(options, buf, offset) {
   var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1;
 
   // Time since last uuid creation (in msecs)
-  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs)/10000;
+  var dt = (msecs - _lastMSecs) + (nsecs - _lastNSecs) / 10000;
 
   // Per 4.2.1.2, Bump clockseq on clock regression
   if (dt < 0 && options.clockseq === undefined) {
@@ -244,10 +244,10 @@ function v1(options, buf, offset) {
   return buf ? buf : bytesToUuid_1(b);
 }
 
-var v1_1 = v1;function v4(options, buf, offset) {
+var v1_1 = v1; function v4(options, buf, offset) {
   var i = buf && offset || 0;
 
-  if (typeof(options) == 'string') {
+  if (typeof (options) == 'string') {
     buf = options === 'binary' ? new Array(16) : null;
     options = null;
   }
@@ -269,11 +269,11 @@ var v1_1 = v1;function v4(options, buf, offset) {
   return buf || bytesToUuid_1(rnds);
 }
 
-var v4_1 = v4;var uuid = v4_1;
+var v4_1 = v4; var uuid = v4_1;
 uuid.v1 = v1_1;
 uuid.v4 = v4_1;
 
-var uuid_1 = uuid;var script = /*#__PURE__*/{
+var uuid_1 = uuid; var script = /*#__PURE__*/{
   name: "Multicorder",
   data: function data() {
     return {
@@ -598,7 +598,7 @@ var uuid_1 = uuid;var script = /*#__PURE__*/{
 
               case 3:
                 uid = _context.sent;
-                data.name = "clip-" + uid + ".webm";
+                data.name = "clip-" + uid + ".mp4";
 
                 _this8.recordings.push(data);
 
@@ -667,7 +667,7 @@ var uuid_1 = uuid;var script = /*#__PURE__*/{
       }
 
       var ctx = this.ctx,
-          canvas = this.canvas;
+        canvas = this.canvas;
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       return canvas;
     },
@@ -679,7 +679,7 @@ var uuid_1 = uuid;var script = /*#__PURE__*/{
             switch (_context3.prev = _context3.next) {
               case 0:
                 // convert base64/URLEncoded data component to raw binary data held in a string
-                if (dataURI.split(",")[0].indexOf("base64") >= 0) byteString = atob(dataURI.split(",")[1]);else byteString = unescape(dataURI.split(",")[1]); // separate out the mime component
+                if (dataURI.split(",")[0].indexOf("base64") >= 0) byteString = atob(dataURI.split(",")[1]); else byteString = unescape(dataURI.split(",")[1]); // separate out the mime component
 
                 mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0]; // write the bytes of the string to a typed array
 
@@ -770,7 +770,7 @@ var uuid_1 = uuid;var script = /*#__PURE__*/{
                 document.body.appendChild(a);
                 a.style = "display: none";
                 a.href = url;
-                a.download = "video.webm";
+                a.download = "video.mp4";
                 a.click();
                 window.URL.revokeObjectURL(url);
 
@@ -840,79 +840,79 @@ var uuid_1 = uuid;var script = /*#__PURE__*/{
       this.$refs.video.mute();
     }
   }
-};function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
-    if (typeof shadowMode !== 'boolean') {
-        createInjectorSSR = createInjector;
-        createInjector = shadowMode;
-        shadowMode = false;
+}; function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
+  if (typeof shadowMode !== 'boolean') {
+    createInjectorSSR = createInjector;
+    createInjector = shadowMode;
+    shadowMode = false;
+  }
+  // Vue.extend constructor export interop.
+  const options = typeof script === 'function' ? script.options : script;
+  // render functions
+  if (template && template.render) {
+    options.render = template.render;
+    options.staticRenderFns = template.staticRenderFns;
+    options._compiled = true;
+    // functional template
+    if (isFunctionalTemplate) {
+      options.functional = true;
     }
-    // Vue.extend constructor export interop.
-    const options = typeof script === 'function' ? script.options : script;
-    // render functions
-    if (template && template.render) {
-        options.render = template.render;
-        options.staticRenderFns = template.staticRenderFns;
-        options._compiled = true;
-        // functional template
-        if (isFunctionalTemplate) {
-            options.functional = true;
-        }
+  }
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId;
+  }
+  let hook;
+  if (moduleIdentifier) {
+    // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__;
+      }
+      // inject component styles
+      if (style) {
+        style.call(this, createInjectorSSR(context));
+      }
+      // register component module identifier for async chunk inference
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier);
+      }
+    };
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook;
+  }
+  else if (style) {
+    hook = shadowMode
+      ? function (context) {
+        style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
+      }
+      : function (context) {
+        style.call(this, createInjector(context));
+      };
+  }
+  if (hook) {
+    if (options.functional) {
+      // register for functional component in vue file
+      const originalRender = options.render;
+      options.render = function renderWithStyleInjection(h, context) {
+        hook.call(context);
+        return originalRender(h, context);
+      };
     }
-    // scopedId
-    if (scopeId) {
-        options._scopeId = scopeId;
+    else {
+      // inject component registration as beforeCreate hook
+      const existing = options.beforeCreate;
+      options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
     }
-    let hook;
-    if (moduleIdentifier) {
-        // server build
-        hook = function (context) {
-            // 2.3 injection
-            context =
-                context || // cached call
-                    (this.$vnode && this.$vnode.ssrContext) || // stateful
-                    (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
-            // 2.2 with runInNewContext: true
-            if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-                context = __VUE_SSR_CONTEXT__;
-            }
-            // inject component styles
-            if (style) {
-                style.call(this, createInjectorSSR(context));
-            }
-            // register component module identifier for async chunk inference
-            if (context && context._registeredComponents) {
-                context._registeredComponents.add(moduleIdentifier);
-            }
-        };
-        // used by ssr in case component is cached and beforeCreate
-        // never gets called
-        options._ssrRegister = hook;
-    }
-    else if (style) {
-        hook = shadowMode
-            ? function (context) {
-                style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
-            }
-            : function (context) {
-                style.call(this, createInjector(context));
-            };
-    }
-    if (hook) {
-        if (options.functional) {
-            // register for functional component in vue file
-            const originalRender = options.render;
-            options.render = function renderWithStyleInjection(h, context) {
-                hook.call(context);
-                return originalRender(h, context);
-            };
-        }
-        else {
-            // inject component registration as beforeCreate hook
-            const existing = options.beforeCreate;
-            options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
-        }
-    }
-    return script;
+  }
+  return script;
 }/* script */
 var __vue_script__ = script;
 /* template */
@@ -957,24 +957,24 @@ var __vue_is_functional_template__ = false;
 var __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);/* eslint-disable import/prefer-default-export */var components$1=/*#__PURE__*/Object.freeze({__proto__:null,Multicorder: __vue_component__});var install = function installMulticorder(Vue) {
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);/* eslint-disable import/prefer-default-export */var components$1 =/*#__PURE__*/Object.freeze({ __proto__: null, Multicorder: __vue_component__ }); var install = function installMulticorder(Vue) {
   Object.entries(components$1).forEach(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
-        componentName = _ref2[0],
-        component = _ref2[1];
+      componentName = _ref2[0],
+      component = _ref2[1];
 
     Vue.component(componentName, component);
   });
 }; // Create module definition for Vue.use()
-var components=/*#__PURE__*/Object.freeze({__proto__:null,'default': install,Multicorder: __vue_component__});// only expose one global var, with component exports exposed as properties of
+var components =/*#__PURE__*/Object.freeze({ __proto__: null, 'default': install, Multicorder: __vue_component__ });// only expose one global var, with component exports exposed as properties of
 // that global var (eg. plugin.component)
 
 Object.entries(components).forEach(function (_ref) {
   var _ref2 = _slicedToArray(_ref, 2),
-      componentName = _ref2[0],
-      component = _ref2[1];
+    componentName = _ref2[0],
+    component = _ref2[1];
 
   if (componentName !== 'default') {
     install[componentName] = component;
   }
-});module.exports=install;
+}); module.exports = install;
