@@ -177,7 +177,7 @@ uuid.v4 = v4_1;
 var uuid_1 = uuid;
 
 //
-var script = /*#__PURE__*/{
+var script = {
   name: "Multicorder",
 
   data() {
@@ -797,11 +797,13 @@ const __vue_component__ = /*#__PURE__*/normalizeComponent({
   staticRenderFns: __vue_staticRenderFns__
 }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
 
+var __vue_component__$1 = __vue_component__;
+
 /* eslint-disable import/prefer-default-export */
 
 var components = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  Multicorder: __vue_component__
+  Multicorder: __vue_component__$1
 });
 
 // Import vue components
@@ -812,5 +814,4 @@ const install = function installMulticorder(Vue) {
   });
 }; // Create module definition for Vue.use()
 
-export default install;
-export { __vue_component__ as Multicorder };
+export { __vue_component__$1 as Multicorder, install as default };
