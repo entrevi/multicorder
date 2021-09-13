@@ -14,9 +14,9 @@
     "snapshot",
     "multicorder"
   ],
-  "homepage": "https://github.com/bwinkers/multicorder#README.md",
+  "homepage": "https://github.com/entrevi/multicorder#README.md",
   "repository": "github:bwinkers/multicorder",
-  "bugs": "https://github.com/bwinkers/multicorder/issues",
+  "bugs": "https://github.com/entrevi/multicorder/issues",
   "main": "dist/multicorder.ssr.js",
   "browser": "dist/multicorder.esm.js",
   "module": "dist/multicorder.esm.js",
