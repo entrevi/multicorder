@@ -44,6 +44,14 @@ export default /*#__PURE__*/ {
     };
   },
   props: {
+    mediaRecorderOptions: {
+      type: Object,
+      default: {
+        mimeType: "video/mp4",
+        videoBitsPerSecond: 1500000,
+        audioBitsPerSecond: 64000,
+      },
+    },
     videoSource: {
       type: Object,
       default: null,
@@ -323,7 +331,7 @@ export default /*#__PURE__*/ {
     async pushVideoData(data) {
       if (data.size > 0) {
         const uid = await uuidv4();
-        data.name = "clip-" + uid + ".webm";
+        data.name = "clip-" + uid + ".mp4";
         this.recordings.push(data);
         if(this.recorderMode == "single") {
           this.setView("videoPlayer");
@@ -407,7 +415,7 @@ export default /*#__PURE__*/ {
       document.body.appendChild(a);
       a.style = "display: none";
       a.href = url;
-      a.download = "video.webm";
+      a.download = "video.mp4";
       a.click();
       window.URL.revokeObjectURL(url);
     },
